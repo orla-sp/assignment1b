@@ -4,20 +4,24 @@ import java.util.ArrayList;
 public class Driver {
     public static void main(String args[]) {
 
+        // creating course objects
         Course ECE = new Course("ECE", new DateTime(2018, 8, 28, 9, 0 ,0 ,0), new DateTime(2021, 6, 20, 5, 0, 0, 0));
         Course CSIT = new Course("CSIT", new DateTime(2018, 8, 28, 9, 0 ,0 ,0), new DateTime(2021, 6, 20, 5, 0, 0, 0));
         Course BA3 = new Course("BA3", new DateTime(2019, 8, 28, 9, 0 ,0 ,0), new DateTime(2021, 6, 20, 5, 0, 0, 0));
 
+        // initialising course list and adding courses
         ArrayList<Course> courses = new ArrayList<>();
         courses.add(ECE);
         courses.add(CSIT);
         courses.add(BA3);
 
+        // creating student objects
         Student jack = new Student("Jack", 21, "12/05/2000", "112233", ECE);
         Student peter = new Student("Peter", 20, "12/12/2000", "445566", CSIT);
         Student rachel = new Student("Rachel", 19, "11/01/2002", "778899", BA3);
         Student orla = new Student("Orla", 21, "05/04/2000", "665544", ECE);
 
+        // creating module objects
         Module ct417 = new Module("Software Eng", "ct417");
         Module ee451 = new Module("System on Chip 1", "ee451");
         Module ee4101 = new Module("Mobile Networks Eng", "ee4101");
@@ -27,6 +31,7 @@ public class Driver {
         Module it389 = new Module("IT Infastructure", "it389");
         Module ba441 = new Module("Sociology", "ba441");
 
+        // adding students to list for each module
         ct417.getStudents().add(jack);
         ct417.getStudents().add(orla);
         ct417.getStudents().add(peter);
@@ -45,6 +50,7 @@ public class Driver {
         ba441.getStudents().add(rachel);
         ba412.getStudents().add(rachel);
 
+        // adding modules to list for each course
         ECE.getModules().add(ct417);
         ECE.getModules().add(ee451);
         ECE.getModules().add(ee4101);
@@ -56,19 +62,26 @@ public class Driver {
         BA3.getModules().add(ba441);
         BA3.getModules().add(ba412);
 
-
+        // looping over all courses
         for(Course c : courses) {
             String sInfo = "";
+            // looping over students in course
             for(Student s : c.getStudents()) {
+                // adding student information to a string
                 sInfo += "\n\nName: " + s.getName() + "\nUsername: " + s.getUsername() + "\nModules: ";
+                // looping over moduels taken by student
                 for(Module m : s.getModules()) {
+                    // adding modules to student information string
                     sInfo += m.getmName() + ", ";
                 }
                 sInfo += "\nCourses: ";
+                // looping over courses taken by student
                 for(Course course : s.getCourses()) {
+                    // adding course name to student informatin string
                     sInfo += course.getcName() + ", ";
                 }
             }
+            // printing out all information
             System.out.println("\n ------------------\nCourse: " + c.getcName() +
                     "\nModules: " + c.printModules() + "\nStudents:" + sInfo);
         }
