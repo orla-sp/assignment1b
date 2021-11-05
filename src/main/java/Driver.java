@@ -31,36 +31,27 @@ public class Driver {
         Module it389 = new Module("IT Infastructure", "it389");
         Module ba441 = new Module("Sociology", "ba441");
 
-        // adding students to list for each module
-        ct417.getStudents().add(jack);
-        ct417.getStudents().add(orla);
-        ct417.getStudents().add(peter);
+     // adding modules to each course
+        ECE.addModule(ct417);
+        ECE.addModule(ee451);
+        ECE.addModule(ee4101);
+        ECE.addModule(ee445);
 
-        ee451.getStudents().add(jack);
-        ee451.getStudents().add(orla);
+        CSIT.addModule(ct417);
+        CSIT.addModule(it389);
 
-        ee4101.getStudents().add(jack);
-        ee4101.getStudents().add(orla);
+        BA3.addModule(ba412);
+        BA3.addModule(ba441);
 
-        ee445.getStudents().add(jack);
-        ee445.getStudents().add(orla);
-
-        it389.getStudents().add(peter);
-
-        ba441.getStudents().add(rachel);
-        ba412.getStudents().add(rachel);
-
-        // adding modules to list for each course
-        ECE.getModules().add(ct417);
-        ECE.getModules().add(ee451);
-        ECE.getModules().add(ee4101);
-        ECE.getModules().add(ee445);
-
-        CSIT.getModules().add(ct417);
-        CSIT.getModules().add(it389);
-
-        BA3.getModules().add(ba441);
-        BA3.getModules().add(ba412);
+     // looping over students in each course
+     // adding course modules to students modules list
+        for(Course c : courses) {
+            for(Student s : c.getStudents()) {
+                for(Module m : c.getModules()) {
+                    s.addModule(m);
+                }
+            }
+        }
 
         // looping over all courses
         for(Course c : courses) {
